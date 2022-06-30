@@ -15,7 +15,7 @@ public class MemberRepository {
 
     private final EntityManager em;
 
-    // member 저장
+    // member 저장 - 트랜잭션 적용
     @Transactional
     public void save(Member member) {
         log.info("member 저장");
