@@ -15,7 +15,7 @@ public class LogRepository {
 
     private final EntityManager em;
 
-    // 로그 저장
+    // 로그 저장 - 트랜잭션 적용
     @Transactional
     public void save(Log logMessage) {
         log.info("log 저장");
