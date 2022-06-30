@@ -3,6 +3,7 @@ package hello.springtx.propagation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ public class LogRepository {
     private final EntityManager em;
 
     // 로그 저장 - 트랜잭션 적용
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW) // 내부 롤백이 발생해도 외부 트랜잭션은 영향을 받지 않게끔 처리
     public void save(Log logMessage) {
         log.info("log 저장");
         em.persist(logMessage);

@@ -42,7 +42,7 @@ public class MemberService {
             logRepository.save(logMessage);
         } catch (RuntimeException e) {
             log.info("log 저장에 실패했습니다. logMessage={}", logMessage.getMessage());
-            log.info("정상 흐름 반환"); // 로그 저장 예외 때문에 고객이 서비스 사용에 방해가 된다면 안되게 때문에 로그 저장시 예외가 터지면 정상 흐름으로 반환한다.
+            log.info("정상 흐름 반환"); // 로그 저장 예외 때문에 고객이 서비스 사용에 방해가 된다면 안되게 때문에 로그 저장시 예외가 터지면 정상 흐름으로 반환한다. -> 커밋한다.
         }
         log.info("== logRepository 호출 종료 ==");
     }
