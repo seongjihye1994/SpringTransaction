@@ -15,12 +15,14 @@ public class MemberRepository {
 
     private final EntityManager em;
 
+    // member 저장
     @Transactional
     public void save(Member member) {
         log.info("member 저장");
         em.persist(member);
     }
 
+    // member 조회
     public Optional<Member> find(String username) {
         return em.createQuery("select m from Member m where m.username = :username", Member.class)
                 .setParameter("username", username)

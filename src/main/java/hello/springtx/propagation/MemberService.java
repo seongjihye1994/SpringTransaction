@@ -12,6 +12,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final LogRepository logRepository;
 
+    // 서비스 계층에 @Transactional이 없을 때 커밋되는 상황
     public void joinV1(String username) {
         Member member = new Member(username);
         Log logMessage = new Log(username);
@@ -25,6 +26,7 @@ public class MemberService {
         log.info("== logRepository 호출 종료 ==");
     }
 
+    // 서비스 계층에 @Transactional이 없을 때 롤백되는 상황 - 예외 발생
     public void joinV2(String username) {
         Member member = new Member(username);
         Log logMessage = new Log(username);
