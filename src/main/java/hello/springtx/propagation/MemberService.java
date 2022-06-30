@@ -28,7 +28,7 @@ public class MemberService {
         log.info("== logRepository 호출 종료 ==");
     }
 
-    // 서비스 계층에 @Transactional이 없을 때 롤백되는 상황 - 예외 발생
+    @Transactional
     public void joinV2(String username) {
         Member member = new Member(username);
         Log logMessage = new Log(username);
@@ -42,7 +42,7 @@ public class MemberService {
             logRepository.save(logMessage);
         } catch (RuntimeException e) {
             log.info("log 저장에 실패했습니다. logMessage={}", logMessage.getMessage());
-            log.info("정상 흐름 반환"); // 로그 저장때문에 고객이 서비스 사용에 방해가 된다면 안되게 때문에 로그 저장시 예외가 터지면 정상 흐름으로 반환한다.
+            log.info("정상 흐름 반환"); // 로그 저장 예외 때문에 고객이 서비스 사용에 방해가 된다면 안되게 때문에 로그 저장시 예외가 터지면 정상 흐름으로 반환한다.
         }
         log.info("== logRepository 호출 종료 ==");
     }
